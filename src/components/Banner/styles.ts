@@ -12,9 +12,9 @@ justify-content:center;
 
 
 img{
-    max-width: 300px;
-    height: 200px;
-    margin-top: 150px;
+    max-width: 450px;
+    height: 250px;
+    margin-top: 90px;
 }
    
 

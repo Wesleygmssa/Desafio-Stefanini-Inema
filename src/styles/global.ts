@@ -6,6 +6,7 @@ export default createGlobalStyle`
     --nav-color: #1b546f;
     --text-color: #2d8ab7;
     --title-color: #34CB79;
+    --text-second: #7a7a7a;
     --background-color: #faefde;
   }
 

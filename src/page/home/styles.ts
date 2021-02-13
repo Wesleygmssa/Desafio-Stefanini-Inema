@@ -1,6 +1,31 @@
 import styled from 'styled-components';
 
 
+export const Form = styled.form`
+display: flex;
+flex-direction: column;
+padding: 0 20px;
+
+input{
+    padding: 18px;
+    border-radius: 10px;
+
+    & + input{
+        margin-top: 20px;
+    }
+}
+
+
+button{
+    width: 50%;
+    margin: 20px auto 0 auto;
+    background: #fff;
+    color: var(--text-color);
+    border-radius: 12px;
+}
+
+`;
+
 
 export const Content = styled.div`
 display: flex;
@@ -22,7 +47,7 @@ export const ContentInt = styled.div`
 
 
 export const BoxContent = styled.div`
-flex: 1 1 400px;
+flex: 1 1 350px;
     padding: 25px;
     display: flex;
     align-items: center;
@@ -33,6 +58,7 @@ flex: 1 1 400px;
         width: 400px;
         color: #CCC;
         padding-top: 30px;
+        color: var(--text-second);
 
     }
 
@@ -41,6 +67,8 @@ flex: 1 1 400px;
         color: #CCC;
         padding-top: 10px;
         padding-bottom: 40px;
+        
+
     }
 
     h3{
@@ -52,6 +80,7 @@ export const Title = styled.h3`
 color: var(--nav-color);
 font-weight: 700;
 color: var( --text-color);
+font-size: 18px;
 
 
 &:nth-child(1){
@@ -62,10 +91,10 @@ color: var( --text-color);
 
 export const Box = styled.div`
     padding: 20px 30px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     position: relative;
-    top: -80px;
+    top: -70px;
     background: var(--nav-color);
     
 `;
