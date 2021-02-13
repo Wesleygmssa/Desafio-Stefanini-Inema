@@ -1,5 +1,6 @@
 import { FormHandles } from '@unform/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { FaDoorClosed } from 'react-icons/fa'
 import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
@@ -62,20 +63,7 @@ const Home: React.FC = () => {
     const ConteudoDois = useCallback(() => {
         return (
             <AnimationContainer>
-                <Form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="nome"
-                        placeholder="Nome do colaborador"
-                        value={nome}
-                        onChange={(e) => { setNome(e.target.value) }}
-                    />
-                    <input type="text" name="nome_foto" placeholder="Nome da foto" />
-                    <input type="text" name="local_foto" placeholder="Local da foto" />
-                    <input type="date" name="data_foto" placeholder="Data de registro" />
-                    <input type="file" name="img_base64" placeholder="Data de registro" />
-                    <Button type="submit">Enviar</Button>
-                </Form>
+
             </AnimationContainer>
         )
     }, [handleSubmit, nome])
@@ -117,8 +105,27 @@ const Home: React.FC = () => {
                             </Box>
                             <Button onClick={() => { setModalIsOpen(true) }}>FAÇA SUA INSCRIÇÃO</Button>
                             <Modal isOpen={modalIsOpen}>
-                                <h1>Teste</h1>
-                                <button onClick={() => { setModalIsOpen(false) }}>Frchar</button>
+
+                                <div>
+                                    <Form onSubmit={handleSubmit}>
+
+                                        <input
+                                            type="text"
+                                            name="nome"
+                                            placeholder="Nome do colaborador"
+                                            value={nome}
+                                            onChange={(e) => { setNome(e.target.value) }}
+                                        />
+                                        <input type="text" name="nome_foto" placeholder="Nome da foto" />
+                                        <input type="text" name="local_foto" placeholder="Local da foto" />
+                                        <input type="date" name="data_foto" placeholder="Data de registro" />
+                                        <input type="file" name="img_base64" placeholder="Data de registro" />
+                                        <Button type="submit">Enviar</Button>
+                                    </Form>
+                                </div>
+
+
+                                <FaDoorClosed size={30} onClick={() => { setModalIsOpen(false) }}>X</FaDoorClosed>
                             </Modal>
                         </BoxContent>
                     </ContentInt>
