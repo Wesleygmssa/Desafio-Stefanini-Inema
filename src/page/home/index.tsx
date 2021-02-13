@@ -105,10 +105,37 @@ const Home: React.FC = () => {
                             {togleConteudos ? <ConteudoDois /> : <ConteudoUm />}
                         </BoxContent>
                     </ContentInt>
-                    <About />
-                    <About />
-                    <About />
-                    <About />
+                    <About >
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
+                        sequi explicabo adipisci id consequuntur?
+                    </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
+                        sequi explicabo adipisci id consequuntur?
+                    </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
+                        sequi explicabo adipisci id consequuntur?
+                    </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
+                        sequi explicabo adipisci id consequuntur?
+                    </p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
+                        sequi explicabo adipisci id consequuntur?
+                    </p>
+                    </About>
+                    <About>
+                        <ul>
+                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
+                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
+                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
+                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
+                        </ul>
+                    </About>
+
                 </Content>
             </Container>
             <Footer />
