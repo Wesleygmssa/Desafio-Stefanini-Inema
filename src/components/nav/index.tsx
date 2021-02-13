@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
                             <a href="//#region ">INÍCIO</a>
                         </li>
                         <li>
-                            <a href="//#region ">O CONCURSO</a>
+                            <a href="#id_concurso">O CONCURSO</a>
                         </li>
                         <li>
                             <a href="//#region ">SOBRE</a>

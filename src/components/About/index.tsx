@@ -10,7 +10,6 @@ const About: React.FC = ({ children }) => {
         <>
             <Container >
                 <Container_about>
-                    <h1>Sobre</h1>
                     {children}
                 </Container_about>
             </Container>

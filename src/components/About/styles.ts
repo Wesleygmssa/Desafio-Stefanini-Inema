@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Container_about = styled.div`      
 
     max-width: 80%;
-    margin: 50px auto;
+    margin: 100px auto;
 
     h1{
         font-size: 2.5em;

@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import { FormHandles } from '@unform/core';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
-import Modal from '../../components/Modal';
 import Nav from '../../components/nav';
 import { Container } from '../../styles/global';
 import { Content, Title, ContentInt, BoxContent, Box, Form } from './styles';
-
-
-
 
 
 //animação
@@ -27,7 +25,7 @@ to{
 
 export const AnimationContainer = styled.div`
 position: absolute;
-top: 40%;
+top: 19%;
 width: 500px;
 min-height: 500px;
 background: var(--nav-color);
@@ -42,55 +40,71 @@ background: var(--nav-color);
 ;
 `;
 
-const ConteudoUm = () => {
-    return <div></div>;
-}
-const ConteudoDois = () => {
-    return (
-        <AnimationContainer>
-            <Form action="">
-                <input type="text" placeholder="Nome do colaborador" />
-                <input type="text" placeholder="Nome da foto" />
-                <input type="text" placeholder="Local da foto" />
-                <input type="date" placeholder="Data de registro" />
-                <input type="file" placeholder="Data de registro" />
-                <Button type="submit">Enviar</Button>
-            </Form>
-        </AnimationContainer>
-    )
-}
 
 
 const Home: React.FC = () => {
 
-    const [togleConteudos, setTogleConteudos] = useState(false);
 
-    const handleTogle = () => {
-        // setTogleConteudos(prev => !prev);
-        setTogleConteudos(!togleConteudos);
+    const [nome, setNome] = useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault();
+        console.log(nome)
+    }, [nome])
+
+
+    const ConteudoUm = () => {
+        return <div></div>;
     }
 
+    const ConteudoDois = useCallback(() => {
+        return (
+            <AnimationContainer>
+                <Form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="nome"
+                        placeholder="Nome do colaborador"
+                        value={nome}
+                        onChange={(e) => { setNome(e.target.value) }}
+                    />
+                    <input type="text" name="nome_foto" placeholder="Nome da foto" />
+                    <input type="text" name="local_foto" placeholder="Local da foto" />
+                    <input type="date" name="data_foto" placeholder="Data de registro" />
+                    <input type="file" name="img_base64" placeholder="Data de registro" />
+                    <Button type="submit">Enviar</Button>
+                </Form>
+            </AnimationContainer>
+        )
+    }, [handleSubmit, nome])
+
+    const [togleConteudos, setTogleConteudos] = useState(false);
+
+    const handleTogle = useCallback(() => {
+        // setTogleConteudos(prev => !prev);
+        setTogleConteudos(!togleConteudos);
+    }, [])
 
     return (
         <>
-            <Modal />
             <Container>
                 <Nav />
                 <Banner />
-                <Content>
-                    <ContentInt>
+                <Content >
+                    <ContentInt id="id_concurso">
                         <BoxContent>
-                            <Title>
+                            <Title >
                                 O CONCURSO
                             </Title>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Blanditiis quae dolor ad minus vero hic ullam, praesentium perferendis
-                            repudiandae rem iure! Consectetur quibusdam architecto vitae? Accusantium
-                            amet necessitatibus possimus ipsa!
-                                </p>
+                            <p>Concurso de fotografia para todos os técnicos do Inema para exposição de fotos que retratem a temática água
+                            (os desafios e as belezas encontradas em campo) pelos colaboradores.
+                            Além de uma apresentação cultural com um artista de rua (poesia, musica, cordel) que aborde a temática água.
+                         </p>
                         </BoxContent>
                         <BoxContent>
-                            <Box>
+                            <Box >
                                 <Title> EXPOSIÇÃO DE FOTOS</Title>
                                 <span>20 á 24/03/2017 na <br />
                                 divisórias da Ouvidoria <br />
@@ -101,39 +115,55 @@ const Home: React.FC = () => {
                                 ás 17:30h.
                                 </span>
                             </Box>
-                            <Button onClick={handleTogle}>FAÇA SUA INSCRIÇÃO</Button>
-                            {togleConteudos ? <ConteudoDois /> : <ConteudoUm />}
+                            <Button onClick={() => { setModalIsOpen(true) }}>FAÇA SUA INSCRIÇÃO</Button>
+                            <Modal isOpen={modalIsOpen}>
+                                <h1>Teste</h1>
+                                <button onClick={() => { setModalIsOpen(false) }}>Frchar</button>
+                            </Modal>
                         </BoxContent>
                     </ContentInt>
                     <About >
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
-                        sequi explicabo adipisci id consequuntur?
-                    </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
-                        sequi explicabo adipisci id consequuntur?
-                    </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
-                        sequi explicabo adipisci id consequuntur?
-                    </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
-                        sequi explicabo adipisci id consequuntur?
-                    </p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        ab delectus praesentium eaque tenetur ratione sint! Expedita animi accusantium inventore nulla vel beatae quia ipsam,
-                        sequi explicabo adipisci id consequuntur?
-                    </p>
+
+                        <h1>SOBRE</h1>
+                        <p>
+                            Objetivos</p>
+
+                        <p>Promover a seleção de 100 fotografias produzidas por colaboradores do Inema em comemoração ao dia da água,
+                        que será elaborado um mural de fotos denominado de “Varal das Águas”.</p>
+
+                        <p>Dos participante</p>
+
+                        <p>Poderão participar do Concurso Fotográfico 2017: Todos os colaboradores do Instituto do Meio Ambiente e Recursos Hídricos -
+                        INEMA e Secretaria do Meio Ambiente -SEMA.</p>
+
+                        <p>Das especificações das fotografias participantes</p>
+
+                        <p>As fotografias devem abordar somente o tema OS DESAFIOS E AS BELEZAS RETRATADAS EM CAMPO REFERENTE À SITUAÇÃO HIDRICA,
+                        devendo ser obrigatoriamente a foto ser tirada em inspeção em campo a serviço do Inema.</p>
+
+                        <p>Premiação final do concurso</p>
+
+                        <p>As 05 (cinco) primeiras fotografia que for mais votada nas redes sociais (Facebook e Instagram) do Inema, receberá como prêmio.
+
+                        </p>
                     </About>
                     <About>
-                        <ul>
-                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
-                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
-                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
-                            <li>Lorem, ipsum dolor sit  aliquam itaque explicabo harum tempora?</li>
-                        </ul>
+
+                        <h1>REGRAS</h1>
+
+                        <p> Todas as fotos que retrate da temática água (tais como situação de secas ou excedentes hídricos,
+                    as belezas e os desafios de se trabalhar com os recursos hídricos etc.) serão bem vindas.</p>
+                        <p> • As fotos devem ser originais e sem alterações.</p>
+                        <p>• As fotos devem expor os ambientes visitados em inspeções técnicas realizadas durante inspeções pelo INEMA.</p>
+                        <p>• Fotografias que incluam pessoas serão desclassificadas.</p>
+                        <p> • As fotos devem ser enviadas com um formulário de inscrição preenchido.</p>
+                        <p>• As fotografias do concurso se tornarão publicas.</p>
+                        <p>• O fotógrafo da foto que receber mais votos ganhará um prêmio simbólico.</p>
+                        <p>• Cada pessoa só poderá cadastrar uma única foto.</p>
+                        <p>• A votação será por meio das redes sociais do INEMA.</p>
+                        <p> • As vagas serão limitadas apenas 50.</p>
+
+                        <p>A foto vencedora irá ganhar um kit de brinde (Agenda, caneta, livro).</p>
                     </About>
 
                 </Content>

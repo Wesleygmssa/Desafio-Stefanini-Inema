@@ -33,6 +33,10 @@ export const Nav = styled.nav`
             & + li {
                 margin-left: 20px;
             }
+            #id_concurso{
+
+                transition: linear 2s forwards;
+            }
         }
     }
 `;
