@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './pages/home';
+import Home from './page/home';
 import Global from './styles/global';
 
 function App() {

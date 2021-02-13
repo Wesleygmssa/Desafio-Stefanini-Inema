@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './styles';
-import ImageBanner from '../../assets/images/banner.png';
+import LogoImg from '../../assets/images/logo.png';
 
 
 
@@ -9,8 +9,9 @@ const Banner: React.FC = () => {
     return (
         <>
             <Container>
-                <img src={ImageBanner} alt="" />
+                <img src={LogoImg} alt="" />
             </Container>
+
 
         </>
     )

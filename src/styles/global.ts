@@ -6,7 +6,7 @@ export default createGlobalStyle`
     --nav-color: #1b546f;
     --text-color: #2d8ab7;
     --title-color: #34CB79;
-    --background-color: #1B232E;
+    --background-color: #faefde;
   }
 
 
@@ -16,8 +16,10 @@ export default createGlobalStyle`
         box-sizing: border-box;
         outline: 0;
     }
-    body{
+    body, #root{
         -webkit-font-smoothing: antialiased;
+        width: 100%;
+        height: 100%;
     }
     body , input , button{
         font-family: 'Roboto', sans-serif;
@@ -33,7 +35,9 @@ export default createGlobalStyle`
 
 
 export const Container = styled.div`
-  max-width: 1240px;
+  width:100%;;
+  min-height: 1600px;
   background: #fff;
   margin: 0px auto;
+  background: var(--background-color);
 `;
