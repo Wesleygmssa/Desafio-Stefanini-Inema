@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import About from '../../components/About';
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
@@ -26,7 +27,7 @@ to{
 
 export const AnimationContainer = styled.div`
 position: absolute;
-top: 50%;
+top: 40%;
 width: 500px;
 min-height: 500px;
 background: var(--nav-color);
@@ -104,8 +105,11 @@ const Home: React.FC = () => {
                             {togleConteudos ? <ConteudoDois /> : <ConteudoUm />}
                         </BoxContent>
                     </ContentInt>
+                    <About />
+                    <About />
+                    <About />
+                    <About />
                 </Content>
-
             </Container>
             <Footer />
         </>

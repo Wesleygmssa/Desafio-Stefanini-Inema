@@ -29,6 +29,7 @@ button{
 
 export const Content = styled.div`
 display: flex;
+flex-direction: column;
 background: #ffffff;
 position: relative;
 top: -80px;
@@ -42,7 +43,6 @@ export const ContentInt = styled.div`
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
     display: flex;
-    flex-wrap:wrap;
 `;
 
 
