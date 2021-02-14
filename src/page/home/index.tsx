@@ -1,6 +1,5 @@
-import { FormHandles } from '@unform/core';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { FaDoorClosed, FaRegTimesCircle } from 'react-icons/fa';
+import React, { useCallback, useState } from 'react';
+import { FaRegTimesCircle } from 'react-icons/fa';
 
 import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
@@ -85,19 +84,19 @@ const Home: React.FC = () => {
             <div id="inital" />
             <Container>
                 <Nav />
-                <Banner >
-                </Banner>
-                <div id="id_concurso" />
+                <Banner />
+
                 <Content >
                     <ContentInt >
                         <BoxContent>
                             <Title >
                                 O CONCURSO
+                <div id="id_concurso" />
                             </Title>
                             <p>Concurso de fotografia para todos os técnicos do Inema para exposição de fotos que retratem a temática água
                             (os desafios e as belezas encontradas em campo) pelos colaboradores.
                             Além de uma apresentação cultural com um artista de rua (poesia, musica, cordel) que aborde a temática água.
-                         </p>
+                            </p>
                         </BoxContent>
                         <BoxContent>
                             <Box >
@@ -106,11 +105,11 @@ const Home: React.FC = () => {
                                 divisórias da Ouvidoria <br />
                                 (em frente ao elevador)
                                 </span>
+                                <div id="inscricao" />
                                 <Title> APRESENTAÇÃO </Title>
                                 <span>20/03/2017 das 16:30h <br />
                                 ás 17:30h.
                                 </span>
-                                <div id="inscricao" />
                             </Box>
                             <Button onClick={() => { setModalIsOpen(true) }}>FAÇA SUA INSCRIÇÃO</Button>
                             <Modal isOpen={modalIsOpen}>
@@ -160,16 +159,15 @@ const Home: React.FC = () => {
                                             onChange={(e) => { setImg_base64(e.target.value) }}
                                         />
 
-                                        <label htmlFor="">
+                                        <label className="terms-agreement-label">
                                             <input
                                                 type="checkbox"
-                                                name="termos"
-                                                placeholder="Arquivo de imagem"
+                                                name="terms-agreement-checkbox"
+                                                onChange={() => { }}
+                                                defaultChecked={false} // inicia como não aceito
                                             />
-
-                                            <span>Termo</span>
-
-                                        </label>
+                                        Aceito os termos
+                                     </label>
 
                                         <Button type="submit">Enviar</Button>
                                     </Form>

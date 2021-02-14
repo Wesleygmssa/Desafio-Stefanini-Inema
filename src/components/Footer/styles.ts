@@ -9,6 +9,8 @@ export const Container_footer = styled.div`
 
    img{
        margin: 48px auto;
+       width: 150px;
+       height:50px;
    }
 
 

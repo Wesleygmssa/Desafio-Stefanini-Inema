@@ -1,3 +1,4 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
 
@@ -32,11 +33,16 @@ export const Nav = styled.nav`
                 text-decoration: none;
             color: var( --text-color);
             cursor: pointer;
+                transition: 0.2s;
+            &:hover{
+            color: ${shade(0.3, '#1b546f')}
+                 }
             }
 
             & + li {
-                margin-left: 20px;
-            }
+            
+                 margin-left: 20px;
+                }
            
         }
     }

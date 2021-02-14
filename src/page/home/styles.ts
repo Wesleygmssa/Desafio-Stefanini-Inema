@@ -1,3 +1,4 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
 
@@ -25,7 +26,8 @@ display: flex;
 flex-direction: column;
 padding: 0 20px;
 width: 80%;
-padding: 60px;
+padding: 60px 60px;
+margin-top: 30px;
 background: var(--nav-color);
 border-radius: 5px;
 
@@ -47,6 +49,11 @@ button{
     background: #fff;
     color: var(--text-color);
     border-radius: 12px;
+    transition: 0.2s;
+
+    &:hover{
+        background: ${shade(0.2, '#fff')}
+    }
 }
 
 `;
@@ -64,23 +71,26 @@ margin: 0 auto;
 `
 
 export const ContentInt = styled.div`
-    min-width: 800px;
+    max-width: 800px;
     height: 100%;
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 `;
 
 export const BoxContent = styled.div`
-flex: 1 1 350px;
     padding: 25px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
 
     p{
 
-        width: 400px;
+        max-width:400px;
+        width: 100%;
         color: #CCC;
         padding-top: 30px;
         color: var(--text-second);
