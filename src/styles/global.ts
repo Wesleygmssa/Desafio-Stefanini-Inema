@@ -22,6 +22,8 @@ export default createGlobalStyle`
         scroll-behavior: smooth;  
     }
     body, #root{
+        scroll-behavior: smooth;  
+
         -webkit-font-smoothing: antialiased;
         width: 100%;
         height: 100%;

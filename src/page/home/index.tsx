@@ -1,6 +1,7 @@
 import { FormHandles } from '@unform/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { FaDoorClosed, FaRegTimesCircle } from 'react-icons/fa'
+import { FaDoorClosed, FaRegTimesCircle } from 'react-icons/fa';
+
 import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
@@ -60,6 +61,7 @@ const Home: React.FC = () => {
     const [local_foto, setLocal_foto] = useState('');
     const [data_foto, setData_foto] = useState('');
     const [img_base64, setImg_base64] = useState('');
+    const [termos, setTermos] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
@@ -71,23 +73,23 @@ const Home: React.FC = () => {
             nome_foto,
             local_foto,
             data_foto,
-            img_base64
+            img_base64,
         }
-        console.log(data)
+        // console.log(data)
 
         await api.post("/participante", data); // fazendo cadastro
     }, [nome, nome_foto, local_foto, data_foto, img_base64])
 
-
-
-
     return (
         <>
+            <div id="inital" />
             <Container>
                 <Nav />
-                <Banner />
+                <Banner >
+                </Banner>
+                <div id="id_concurso" />
                 <Content >
-                    <ContentInt id="id_concurso">
+                    <ContentInt >
                         <BoxContent>
                             <Title >
                                 O CONCURSO
@@ -108,8 +110,8 @@ const Home: React.FC = () => {
                                 <span>20/03/2017 das 16:30h <br />
                                 ás 17:30h.
                                 </span>
+                                <div id="inscricao" />
                             </Box>
-                            <div id="inscricao" />
                             <Button onClick={() => { setModalIsOpen(true) }}>FAÇA SUA INSCRIÇÃO</Button>
                             <Modal isOpen={modalIsOpen}>
 
@@ -158,6 +160,17 @@ const Home: React.FC = () => {
                                             onChange={(e) => { setImg_base64(e.target.value) }}
                                         />
 
+                                        <label htmlFor="">
+                                            <input
+                                                type="checkbox"
+                                                name="termos"
+                                                placeholder="Arquivo de imagem"
+                                            />
+
+                                            <span>Termo</span>
+
+                                        </label>
+
                                         <Button type="submit">Enviar</Button>
                                     </Form>
                                 </ModalInt>
@@ -190,9 +203,9 @@ const Home: React.FC = () => {
                         <p>As 05 (cinco) primeiras fotografia que for mais votada nas redes sociais (Facebook e Instagram) do Inema, receberá como prêmio.
 
                         </p>
+                        <div id="regra" />
                     </About>
                     <About>
-                        <div id="regra" />
                         <h1>REGRAS</h1>
 
                         <p> Todas as fotos que retrate da temática água (tais como situação de secas ou excedentes hídricos,

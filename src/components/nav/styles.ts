@@ -4,6 +4,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
    
     background: var(--nav-color);
+    position: fixed;
+    width: 100%;
+    z-index: 10;
 
 `
 
@@ -28,15 +31,13 @@ export const Nav = styled.nav`
             a{
                 text-decoration: none;
             color: var( --text-color);
+            cursor: pointer;
             }
 
             & + li {
                 margin-left: 20px;
             }
-            #id_concurso{
-
-                transition: linear 2s forwards;
-            }
+           
         }
     }
 `;

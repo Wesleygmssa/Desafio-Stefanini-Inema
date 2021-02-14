@@ -1,5 +1,6 @@
 import React from 'react';
 import { Nav, Container } from './styles';
+import { Link } from 'react-scroll';
 
 
 
@@ -11,19 +12,19 @@ const Navbar: React.FC = () => {
                 <Nav>
                     <ul>
                         <li>
-                            <a href="/">INÍCIO</a>
+                            <Link to="inital" smooth={true} duration={1000}>INÍCIO</Link>
                         </li>
                         <li>
-                            <a href="#id_concurso">O CONCURSO</a>
+                            <Link to="id_concurso" smooth={true} duration={1000}>O CONCURSO</Link>
                         </li>
                         <li>
-                            <a href="#about">SOBRE</a>
+                            <Link to="about" smooth={true} duration={1000}>SOBRE</Link>
                         </li>
                         <li>
-                            <a href="#regra">REGRA</a>
+                            <Link to="regra" smooth={true} duration={1000}>REGRA</Link>
                         </li>
                         <li>
-                            <a href="#inscricao">INSCRIÇÃO</a>
+                            <Link to="inscricao" smooth={true} duration={1000}>INSCRIÇÃO</Link>
                         </li>
 
                     </ul>

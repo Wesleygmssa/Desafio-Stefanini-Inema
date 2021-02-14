@@ -13,7 +13,7 @@ export const ModalInt = styled.div`
     svg{
         position: absolute;
         right: 8px;
-        top: 8px;
+        top: 35px;
         color: #c53030;
         cursor: pointer;
     }
