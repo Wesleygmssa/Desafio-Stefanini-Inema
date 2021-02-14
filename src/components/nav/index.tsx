@@ -11,19 +11,19 @@ const Navbar: React.FC = () => {
                 <Nav>
                     <ul>
                         <li>
-                            <a href="//#region ">INÍCIO</a>
+                            <a href="/">INÍCIO</a>
                         </li>
                         <li>
                             <a href="#id_concurso">O CONCURSO</a>
                         </li>
                         <li>
-                            <a href="//#region ">SOBRE</a>
+                            <a href="#about">SOBRE</a>
                         </li>
                         <li>
-                            <a href="//#region ">REGRA</a>
+                            <a href="#regra">REGRA</a>
                         </li>
                         <li>
-                            <a href="//#region ">INSCRIÇÃO</a>
+                            <a href="#inscricao">INSCRIÇÃO</a>
                         </li>
 
                     </ul>

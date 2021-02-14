@@ -8,6 +8,7 @@ import Banner from '../../components/Banner';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import Nav from '../../components/nav';
+import api from '../../services/api';
 import { Container } from '../../styles/global';
 import {
     Content,
@@ -55,15 +56,27 @@ const Home: React.FC = () => {
 
 
     const [nome, setNome] = useState('');
+    const [nome_foto, setNome_foto] = useState('');
     const [local_foto, setLocal_foto] = useState('');
     const [data_foto, setData_foto] = useState('');
+    const [img_base64, setImg_base64] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
-    const handleSubmit = useCallback((e) => {
+    const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
-        console.log(nome)
-    }, [nome])
+
+        const data = {
+            nome,
+            nome_foto,
+            local_foto,
+            data_foto,
+            img_base64
+        }
+        console.log(data)
+
+        await api.post("/participante", data); // fazendo cadastro
+    }, [nome, nome_foto, local_foto, data_foto, img_base64])
 
 
 
@@ -96,6 +109,7 @@ const Home: React.FC = () => {
                                 ás 17:30h.
                                 </span>
                             </Box>
+                            <div id="inscricao" />
                             <Button onClick={() => { setModalIsOpen(true) }}>FAÇA SUA INSCRIÇÃO</Button>
                             <Modal isOpen={modalIsOpen}>
 
@@ -109,11 +123,41 @@ const Home: React.FC = () => {
                                             placeholder="Nome do colaborador"
                                             value={nome}
                                             onChange={(e) => { setNome(e.target.value) }}
+
                                         />
-                                        <input type="text" name="nome_foto" placeholder="Nome da foto" />
-                                        <input type="text" name="local_foto" placeholder="Local da foto" />
-                                        <input type="date" name="data_foto" placeholder="Data de registro" />
-                                        <input type="file" name="img_base64" placeholder="Data de registro" />
+
+                                        <input
+                                            type="text"
+                                            name="nome_foto"
+                                            placeholder="Nome da foto"
+                                            value={nome_foto}
+                                            onChange={(e) => { setNome_foto(e.target.value) }}
+                                        />
+
+                                        <input
+                                            type="text"
+                                            name="local_foto"
+                                            placeholder="Local da foto"
+                                            value={local_foto}
+                                            onChange={(e) => { setLocal_foto(e.target.value) }}
+                                        />
+
+                                        <input
+                                            type="date"
+                                            name="data_foto"
+                                            placeholder="Data de registro"
+                                            value={data_foto}
+                                            onChange={(e) => { setData_foto(e.target.value) }}
+                                        />
+
+                                        <input
+                                            type="file"
+                                            name="img_base64"
+                                            placeholder="Arquivo de imagem"
+                                            value={img_base64}
+                                            onChange={(e) => { setImg_base64(e.target.value) }}
+                                        />
+
                                         <Button type="submit">Enviar</Button>
                                     </Form>
                                 </ModalInt>
@@ -121,6 +165,7 @@ const Home: React.FC = () => {
 
                         </BoxContent>
                     </ContentInt>
+                    <div id="about" />
                     <About >
 
                         <h1>SOBRE</h1>
@@ -147,7 +192,7 @@ const Home: React.FC = () => {
                         </p>
                     </About>
                     <About>
-
+                        <div id="regra" />
                         <h1>REGRAS</h1>
 
                         <p> Todas as fotos que retrate da temática água (tais como situação de secas ou excedentes hídricos,
