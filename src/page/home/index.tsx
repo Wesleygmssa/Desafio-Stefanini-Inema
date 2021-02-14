@@ -1,6 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 
+import { format } from 'date-fns'
+
+
 import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
@@ -67,17 +70,20 @@ const Home: React.FC = () => {
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
 
+
+
         const data = {
             nome,
             nome_foto,
             local_foto,
-            data_foto,
+            data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
             img_base64,
+            termos
         }
-        // console.log(data)
+        console.log(data)
 
         await api.post("/participante", data); // fazendo cadastro
-    }, [nome, nome_foto, local_foto, data_foto, img_base64])
+    }, [nome, nome_foto, local_foto, data_foto, img_base64, termos])
 
     return (
         <>
@@ -117,7 +123,6 @@ const Home: React.FC = () => {
                                 <ModalInt>
                                     <FaRegTimesCircle size={30} onClick={() => { setModalIsOpen(false) }}>X</FaRegTimesCircle>
                                     <Form onSubmit={handleSubmit}>
-
                                         <input
                                             type="text"
                                             name="nome"
@@ -163,11 +168,11 @@ const Home: React.FC = () => {
                                             <input
                                                 type="checkbox"
                                                 name="terms-agreement-checkbox"
-                                                onChange={() => { }}
+                                                onChange={(e) => { setTermos(e.target.checked) }}
                                                 defaultChecked={false} // inicia como não aceito
                                             />
-                                        Aceito os termos
-                                     </label>
+                                            <span>Aceito os termos</span>
+                                        </label>
 
                                         <Button type="submit">Enviar</Button>
                                     </Form>

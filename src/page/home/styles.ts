@@ -42,6 +42,13 @@ input{
     }
 }
 
+label{
+    color: #fff;
+    span{
+        margin-left: 10px;
+    }
+}
+
 
 button{
     width: 50%;
