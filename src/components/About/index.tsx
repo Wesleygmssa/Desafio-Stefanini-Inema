@@ -4,11 +4,13 @@ import { Container_about } from './styles';
 
 
 
+
+
 const About: React.FC = ({ children }) => {
 
     return (
         <>
-            <Container >
+            <Container  >
                 <Container_about>
                     {children}
                 </Container_about>

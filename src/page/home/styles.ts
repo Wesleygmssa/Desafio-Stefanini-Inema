@@ -2,10 +2,33 @@ import styled from 'styled-components';
 
 
 
+export const ModalInt = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+
+    svg{
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        color: #c53030;
+        cursor: pointer;
+    }
+
+`;
+
 export const Form = styled.form`
 display: flex;
 flex-direction: column;
 padding: 0 20px;
+width: 80%;
+padding: 60px;
+background: var(--nav-color);
+border-radius: 5px;
+
 
 
 input{
@@ -39,6 +62,7 @@ max-width: 70%;
 min-height: 900px;
 margin: 0 auto;
 `
+
 export const ContentInt = styled.div`
     min-width: 800px;
     height: 100%;
@@ -46,7 +70,6 @@ export const ContentInt = styled.div`
     border-bottom: 1px solid #ddd;
     display: flex;
 `;
-
 
 export const BoxContent = styled.div`
 flex: 1 1 350px;

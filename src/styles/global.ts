@@ -17,6 +17,10 @@ export default createGlobalStyle`
         box-sizing: border-box;
         outline: 0;
     }
+
+    html{
+        scroll-behavior: smooth;  
+    }
     body, #root{
         -webkit-font-smoothing: antialiased;
         width: 100%;

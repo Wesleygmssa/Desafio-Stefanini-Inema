@@ -1,6 +1,6 @@
 import { FormHandles } from '@unform/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { FaDoorClosed } from 'react-icons/fa'
+import { FaDoorClosed, FaRegTimesCircle } from 'react-icons/fa'
 import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
@@ -9,7 +9,15 @@ import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import Nav from '../../components/nav';
 import { Container } from '../../styles/global';
-import { Content, Title, ContentInt, BoxContent, Box, Form } from './styles';
+import {
+    Content,
+    Title,
+    ContentInt,
+    BoxContent,
+    Box,
+    Form,
+    ModalInt
+} from './styles';
 
 
 //animação
@@ -47,6 +55,8 @@ const Home: React.FC = () => {
 
 
     const [nome, setNome] = useState('');
+    const [local_foto, setLocal_foto] = useState('');
+    const [data_foto, setData_foto] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
@@ -56,24 +66,7 @@ const Home: React.FC = () => {
     }, [nome])
 
 
-    const ConteudoUm = () => {
-        return <div></div>;
-    }
 
-    const ConteudoDois = useCallback(() => {
-        return (
-            <AnimationContainer>
-
-            </AnimationContainer>
-        )
-    }, [handleSubmit, nome])
-
-    const [togleConteudos, setTogleConteudos] = useState(false);
-
-    const handleTogle = useCallback(() => {
-        // setTogleConteudos(prev => !prev);
-        setTogleConteudos(!togleConteudos);
-    }, [])
 
     return (
         <>
@@ -106,7 +99,8 @@ const Home: React.FC = () => {
                             <Button onClick={() => { setModalIsOpen(true) }}>FAÇA SUA INSCRIÇÃO</Button>
                             <Modal isOpen={modalIsOpen}>
 
-                                <div>
+                                <ModalInt>
+                                    <FaRegTimesCircle size={30} onClick={() => { setModalIsOpen(false) }}>X</FaRegTimesCircle>
                                     <Form onSubmit={handleSubmit}>
 
                                         <input
@@ -122,11 +116,9 @@ const Home: React.FC = () => {
                                         <input type="file" name="img_base64" placeholder="Data de registro" />
                                         <Button type="submit">Enviar</Button>
                                     </Form>
-                                </div>
-
-
-                                <FaDoorClosed size={30} onClick={() => { setModalIsOpen(false) }}>X</FaDoorClosed>
+                                </ModalInt>
                             </Modal>
+
                         </BoxContent>
                     </ContentInt>
                     <About >
