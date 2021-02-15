@@ -9,6 +9,7 @@ import Banner from '../../components/Banner';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import Nav from '../../components/nav';
+import ConvertBase64 from '../../config/ConverteBase64';
 import api from '../../services/api';
 import { Container } from '../../styles/global';
 import {
@@ -69,28 +70,22 @@ const Home: React.FC = () => {
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
 
-        //transformando base url
-        const toBase64 = (files: any) => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(files);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
 
+        const newBase64 = await ConvertBase64(img_base64);
 
         const data = {
             nome,
             nome_foto,
             local_foto,
             data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
-            img_base64: await toBase64(img_base64),
+            img_base64: newBase64,
             foto: nome_foto,
             termos
         }
 
         console.log(data)
 
-        await api.post("/participante", JSON.stringify(data));
+        await api.post("/participante", data);
 
     }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
 
