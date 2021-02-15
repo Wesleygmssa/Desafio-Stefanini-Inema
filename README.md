@@ -2,9 +2,6 @@
   Single Page Application (SPA)
 </h3>
 
-<p align="center">
-   <img src="Leiaute_Varal_das_Aguas.png" >
-</p>
 
 ### :computer: How To Run
 
@@ -33,3 +30,7 @@ Depois que o merge da sua pull request for feito, você pode deletar a sua branc
 ---
 
 Make with ♥ by Wesley Guerra :wave:
+
+<p align="center">
+   <img src="Leiaute_Varal_das_Aguas.png" >
+</p>
