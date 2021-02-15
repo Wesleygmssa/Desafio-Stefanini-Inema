@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -57,33 +57,45 @@ const Home: React.FC = () => {
     const [nome_foto, setNome_foto] = useState('');
     const [local_foto, setLocal_foto] = useState('');
     const [data_foto, setData_foto] = useState('');
-    const [img_base64, setImg_base64] = useState('');
+    const [img_base64, setImg_base64] = useState(null);
     const [termos, setTermos] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
+
+
+
+
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
-        // const data = {
-        //     nome,
-        //     nome_foto,
-        //     local_foto,
-        //     data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
-        //     img_base64,
-        //     termos
-        // }
-        // console.log(data);
-        console.log(nome, nome_foto, local_foto, data_foto, img_base64, termos)
 
-        await api.post("/participante", {
+        //transformando base url
+        const toBase64 = (files: any) => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(files);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
+
+        const data = {
             nome,
             nome_foto,
             local_foto,
             data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
-            img_base64,
+            img_base64: await toBase64(img_base64),
+            foto: nome_foto,
             termos
-        });
-    }, [nome, nome_foto, local_foto, data_foto, img_base64, termos])
+        }
+
+        console.log(data)
+
+        await api.post("/participante", JSON.stringify(data));
+
+    }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
+
+
+
 
     return (
         <>
@@ -158,11 +170,15 @@ const Home: React.FC = () => {
 
                                         <input
                                             type="file"
-                                            name="img_base64"
-                                            placeholder="Arquivo de imagem"
-                                            value={img_base64}
-                                            onChange={(e) => { setImg_base64(e.target.value) }}
-                                        />
+                                            accept="image/*"
+                                            id="image"
+                                            onChange={(e) => {
+                                                var files = e.target.files;
+                                                console.log(files);
+                                                var filesArr = Array.prototype.slice.call(files);
+                                                console.log(filesArr)
+                                                setImg_base64(filesArr[0])
+                                            }} />
 
                                         <label className="terms-agreement-label">
                                             <input
