@@ -1,9 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
-
-import { format } from 'date-fns'
-
-
+import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
@@ -53,10 +51,7 @@ background: var(--nav-color);
 ;
 `;
 
-
-
 const Home: React.FC = () => {
-
 
     const [nome, setNome] = useState('');
     const [nome_foto, setNome_foto] = useState('');
@@ -69,20 +64,25 @@ const Home: React.FC = () => {
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
+        // const data = {
+        //     nome,
+        //     nome_foto,
+        //     local_foto,
+        //     data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
+        //     img_base64,
+        //     termos
+        // }
+        // console.log(data);
+        console.log(nome, nome_foto, local_foto, data_foto, img_base64, termos)
 
-
-
-        const data = {
+        await api.post("/participante", {
             nome,
             nome_foto,
             local_foto,
             data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
             img_base64,
             termos
-        }
-        console.log(data)
-
-        await api.post("/participante", data); // fazendo cadastro
+        });
     }, [nome, nome_foto, local_foto, data_foto, img_base64, termos])
 
     return (
