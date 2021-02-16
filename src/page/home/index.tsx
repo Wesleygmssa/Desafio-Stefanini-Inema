@@ -10,6 +10,7 @@ import Nav from '../../components/nav';
 import ConvertBase64 from '../../config/ConverteBase64';
 import api from '../../services/api';
 import { Container } from '../../styles/global';
+import { useToast } from '../../hooks/ToastContext';
 import {
     Content,
     Title,
@@ -20,7 +21,9 @@ import {
     ModalInt
 } from './styles';
 
-const Home = () => {
+const Home: React.FC = () => {
+
+    const { addToast } = useToast();
 
     const [nome, setNome] = useState('');
     const [nome_foto, setNome_foto] = useState('');
@@ -29,6 +32,7 @@ const Home = () => {
     const [img_base64, setImg_base64] = useState(undefined);
     const [termos, setTermos] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
 
     const handleSubmit = useCallback(async (e) => {
         try {
@@ -49,14 +53,19 @@ const Home = () => {
                     foto: nome_foto,
                     termos
                 }
+
                 await api.post("/participante", data);
             } else {
                 alert('Favor aceitar o termo')
             }
 
         } catch (error) {
-
-            //toast mensagem de error
+            alert('Ocorreu um erro ao enviar a mensagem!')
+            addToast({
+                title: 'Aconteceu um erro',
+                description: 'Ocorreu um erro ao enviar a mensagem!',
+                type: 'error'
+            })
 
         }
 

@@ -1,12 +1,16 @@
 import React from 'react';
+import AppProvider from './hooks';
 import Home from './page/home';
 import Global from './styles/global';
+
 
 function App() {
   return (
     <>
-      <Global />
-      <Home />
+      <AppProvider>
+        <Global />
+        <Home />
+      </AppProvider>
     </>
   );
 }
