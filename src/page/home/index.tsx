@@ -11,6 +11,7 @@ import ConvertBase64 from '../../config/ConverteBase64';
 import api from '../../services/api';
 import { Container } from '../../styles/global';
 import { useToast } from '../../hooks/ToastContext';
+import { Link, useHistory } from 'react-router-dom';
 import {
     Content,
     Title,
@@ -23,7 +24,8 @@ import {
 
 const Home: React.FC = () => {
 
-    // const { addToast } = useToast();
+    const { addToast } = useToast();
+    const history = useHistory();
 
     const [nome, setNome] = useState('');
     const [nome_foto, setNome_foto] = useState('');
@@ -42,8 +44,6 @@ const Home: React.FC = () => {
                 const newBase64 = await ConvertBase64(img_base64);
                 const [, base64String] = (newBase64 as string).split(',');
 
-                console.log(base64String)
-
                 const data = {
                     nome,
                     nome_foto,
@@ -55,19 +55,18 @@ const Home: React.FC = () => {
                 }
 
                 await api.post("/participante", data);
+
+                alert('Mensagem enviada com sucesso!');
+
+                setModalIsOpen(false);
+
+
             } else {
-                alert('Favor aceitar o termo')
+                alert('Favor aceitar o termo');
             }
 
         } catch (error) {
             alert('Ocorreu um erro ao enviar a mensagem!')
-
-            // addToast({
-            //     title: 'Aconteceu um erro',
-            //     description: 'Ocorreu um erro ao enviar a mensagem!',
-            //     type: 'error'
-            // })
-
         }
 
     }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
