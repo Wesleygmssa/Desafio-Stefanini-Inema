@@ -23,7 +23,7 @@ import {
 
 const Home: React.FC = () => {
 
-    const { addToast } = useToast();
+    // const { addToast } = useToast();
 
     const [nome, setNome] = useState('');
     const [nome_foto, setNome_foto] = useState('');
@@ -61,11 +61,12 @@ const Home: React.FC = () => {
 
         } catch (error) {
             alert('Ocorreu um erro ao enviar a mensagem!')
-            addToast({
-                title: 'Aconteceu um erro',
-                description: 'Ocorreu um erro ao enviar a mensagem!',
-                type: 'error'
-            })
+
+            // addToast({
+            //     title: 'Aconteceu um erro',
+            //     description: 'Ocorreu um erro ao enviar a mensagem!',
+            //     type: 'error'
+            // })
 
         }
 
