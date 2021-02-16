@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { format } from 'date-fns';
-// import ToastAnimated, { showToast } from "./ui-lib/toast";
 import Modal from 'react-modal';
 import About from '../../components/About';
 import Banner from '../../components/Banner';
@@ -21,8 +20,6 @@ import {
     ModalInt
 } from './styles';
 
-
-
 const Home = () => {
 
     const [nome, setNome] = useState('');
@@ -39,22 +36,27 @@ const Home = () => {
         try {
             e.preventDefault();
 
-            const newBase64 = await ConvertBase64(img_base64);
-            const [, base64String] = (newBase64 as string).split(',');
+            if (termos) {
+                const newBase64 = await ConvertBase64(img_base64);
+                const [, base64String] = (newBase64 as string).split(',');
 
-            console.log(base64String)
+                console.log(base64String)
 
-            const data = {
-                nome,
-                nome_foto,
-                local_foto,
-                data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
-                img_base64: base64String,
-                foto: nome_foto,
-                termos
+                const data = {
+                    nome,
+                    nome_foto,
+                    local_foto,
+                    data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
+                    img_base64: base64String,
+                    foto: nome_foto,
+                    termos
+                }
+                await api.post("/participante", data);
+            } else {
+                alert('Favor aceitar o termo')
             }
 
-            await api.post("/participante", data);
+
 
         } catch (error) {
 
@@ -70,7 +72,6 @@ const Home = () => {
             <Container>
                 <Nav />
                 <Banner />
-
                 <Content >
                     <ContentInt >
                         <BoxContent>
@@ -157,7 +158,6 @@ const Home = () => {
                                     </Form>
                                 </ModalInt>
                             </Modal>
-
                         </BoxContent>
                     </ContentInt>
                     <div id="about" />
