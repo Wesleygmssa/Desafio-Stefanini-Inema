@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
-import { format } from 'date-fns';
 import Modal from 'react-modal';
 import About from '../../components/About';
 import Banner from '../../components/Banner';
@@ -50,7 +49,6 @@ const Home: React.FC = () => {
         await api.post('/participante', data);
 
         alert('Mensagem enviada com sucesso!');
-
         setNome('');
         setNome_foto('');
         setLocal_foto('');
@@ -98,10 +96,8 @@ const Home: React.FC = () => {
                 <Title> EXPOSIÇÃO DE FOTOS</Title>
                 <span>
                   20 á 24/03/2017 na
-                  {' '}
                   <br />
                   divisórias da Ouvidoria
-                  {' '}
                   <br />
                   (em frente ao elevador)
                 </span>
@@ -109,7 +105,6 @@ const Home: React.FC = () => {
                 <Title> APRESENTAÇÃO </Title>
                 <span>
                   20/03/2017 das 16:30h
-                  {' '}
                   <br />
                   ás 17:30h.
                 </span>

@@ -4,7 +4,6 @@ import React, {
 import { IconBaseProps } from 'react-icons';
 import { useField } from '@unform/core';
 import { Container } from './styles';
-// import Tooltip from '../Tooltip';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string,
