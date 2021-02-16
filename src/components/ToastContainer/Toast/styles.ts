@@ -1,28 +1,27 @@
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-    type?: 'success' | 'error' | 'info';
-    hasDescription: boolean;
+  type?: 'success' | 'error' | 'info';
+  hasDescription: boolean;
 }
-
 
 const toastTypeVariations = {
 
-    info: css`
+  info: css`
     background: #ebf8ff;
     color: #3172b7;
     `,
 
-    success: css`
+  success: css`
     background: #e6fffa;
     color: #2e656a;
     `,
 
-    error: css`
+  error: css`
     background: #fddede;
     color: #c53030;
     `,
-}
+};
 
 export const Container = styled.div<ContainerProps>`
 width: 360px;
@@ -37,7 +36,7 @@ display: flex;
     margin-top: 16px;
 }
 
-${props => toastTypeVariations[props.type || 'info']}
+${(props) => toastTypeVariations[props.type || 'info']}
 
 > svg{
     margin: 4px 12px 0 0;
@@ -65,13 +64,13 @@ button{
 
 
 
-${props => !props.hasDescription && css`
+${(props) => !props.hasDescription && css`
            align-items: center;
-   
-   
+
+
            svg{
                margin-top: 0;
            }
        `}
-           
+
 `;

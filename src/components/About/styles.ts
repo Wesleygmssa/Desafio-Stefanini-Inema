@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container_about = styled.div`      
+export const Container_about = styled.div`
 
     max-width: 80%;
     margin: 100px auto;
@@ -19,4 +19,4 @@ export const Container_about = styled.div`
     }
 
 
-`
+`;

@@ -19,10 +19,10 @@ export default createGlobalStyle`
     }
 
     html{
-        scroll-behavior: smooth;  
+        scroll-behavior: smooth;
     }
     body, #root{
-        scroll-behavior: smooth;  
+        scroll-behavior: smooth;
 
         -webkit-font-smoothing: antialiased;
         width: 100%;

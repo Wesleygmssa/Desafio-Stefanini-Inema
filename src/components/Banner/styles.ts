@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import BanneImge from '../../assets/images/banner.png';
 
-
-
 export const Container = styled.div`
 min-height: 780px;
-background: url(${BanneImge}) no-repeat center; 
+background: url(${BanneImge}) no-repeat center;
 background-size: cover;
 display: flex;
 justify-content:center;
@@ -17,8 +15,6 @@ img{
     height: 250px;
     margin-top: 130px;
 }
-   
-
-`
 
 
+`;

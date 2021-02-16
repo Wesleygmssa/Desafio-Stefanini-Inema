@@ -1,8 +1,6 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-
-
 export const ModalInt = styled.div`
     display: flex;
     justify-content: center;
@@ -66,7 +64,6 @@ button{
 
 `;
 
-
 export const Content = styled.div`
 display: flex;
 flex-direction: column;
@@ -76,7 +73,7 @@ top: -80px;
 max-width: 70%;
 min-height: 900px;
 margin: 0 auto;
-`
+`;
 
 export const ContentInt = styled.div`
     max-width: 800px;
@@ -110,14 +107,14 @@ export const BoxContent = styled.div`
         color: #CCC;
         padding-top: 10px;
         padding-bottom: 40px;
-        
+
 
     }
 
     h3{
         margin-top: 0;
     }
-`
+`;
 
 export const Title = styled.h3`
 color: var(--nav-color);
@@ -130,7 +127,7 @@ font-size: 18px;
     padding-top: 30px;
 }
 
-`
+`;
 
 export const Box = styled.div`
     padding: 20px 30px;
@@ -143,10 +140,5 @@ export const Box = styled.div`
     @media (max-width:1084px) {
         top: 0px;
   }
-    
+
 `;
-
-
-
-
-

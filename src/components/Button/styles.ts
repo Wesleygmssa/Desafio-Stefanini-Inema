@@ -18,6 +18,4 @@ export const Container = styled.button`
     @media (max-width:1084px) {
         top: 10px;
   }
-`
-
-
+`;
