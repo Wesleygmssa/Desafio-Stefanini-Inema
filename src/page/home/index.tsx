@@ -21,8 +21,6 @@ import {
     Form,
     ModalInt
 } from './styles';
-
-
 //animação
 const apperFromCenter = keyframes`
 from{
@@ -52,40 +50,41 @@ background: var(--nav-color);
 ;
 `;
 
-const Home: React.FC = () => {
+const Home = () => {
 
     const [nome, setNome] = useState('');
     const [nome_foto, setNome_foto] = useState('');
     const [local_foto, setLocal_foto] = useState('');
     const [data_foto, setData_foto] = useState('');
-    const [img_base64, setImg_base64] = useState(null);
+    const [img_base64, setImg_base64] = useState(undefined);
     const [termos, setTermos] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
-
-
-
-
     const handleSubmit = useCallback(async (e) => {
-        e.preventDefault();
+        try {
+            e.preventDefault();
+
+            const newBase64 = await ConvertBase64(img_base64);
+
+            const res = (newBase64 as string).replace(`data:image/jpeg;base64,`, "");
+
+            const data = {
+                nome,
+                nome_foto,
+                local_foto,
+                data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
+                img_base64: res,
+                foto: nome_foto,
+                termos
+            }
+            await api.post("/participante", data); //Api bloqueada
+        } catch (error) {
+
+            console.log(error)
 
 
-        const newBase64 = await ConvertBase64(img_base64);
-
-        const data = {
-            nome,
-            nome_foto,
-            local_foto,
-            data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
-            img_base64: newBase64,
-            foto: nome_foto,
-            termos
         }
-
-        console.log(data)
-
-        await api.post("/participante", data);
 
     }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
 
