@@ -41,7 +41,7 @@ const Home: React.FC = () => {
           nome,
           nome_foto,
           local_foto,
-          data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
+          data_foto,
           img_base64: base64String,
           foto: nome_foto,
           termos,
