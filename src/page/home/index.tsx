@@ -10,8 +10,6 @@ import Nav from '../../components/nav';
 import ConvertBase64 from '../../config/ConverteBase64';
 import api from '../../services/api';
 import { Container } from '../../styles/global';
-import { useToast } from '../../hooks/ToastContext';
-import { Link, useHistory } from 'react-router-dom';
 import {
     Content,
     Title,
@@ -24,8 +22,6 @@ import {
 
 const Home: React.FC = () => {
 
-    const { addToast } = useToast();
-    const history = useHistory();
 
     const [nome, setNome] = useState('');
     const [nome_foto, setNome_foto] = useState('');
