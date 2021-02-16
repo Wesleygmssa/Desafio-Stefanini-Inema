@@ -140,9 +140,9 @@ export const Box = styled.div`
     top: -70px;
     background: var(--nav-color);
 
-    /* @media (min-width: 700px) {
+    @media (max-width:1084px) {
         top: 0px;
-  } */
+  }
     
 `;
 

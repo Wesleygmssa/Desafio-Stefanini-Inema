@@ -13,6 +13,7 @@ justify-content:center;
 
 img{
     max-width: 450px;
+    width: 100%;
     height: 250px;
     margin-top: 130px;
 }

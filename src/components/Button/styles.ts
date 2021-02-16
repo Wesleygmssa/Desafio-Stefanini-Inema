@@ -14,10 +14,10 @@ export const Container = styled.button`
     &:hover{
         background: ${shade(0.2, '#1b546f')}
     }
-/* 
-    @media (min-width: 700px) {
+
+    @media (max-width:1084px) {
         top: 10px;
-  } */
+  }
 `
 
 

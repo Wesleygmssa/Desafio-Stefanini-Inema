@@ -14,6 +14,7 @@ export const Container = styled.div`
 
 export const Nav = styled.nav`
     max-width: 80%;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     height: 10vh;
@@ -25,11 +26,12 @@ export const Nav = styled.nav`
         display: flex;
         justify-content: flex-start;
         
-        
 
         li{
             list-style: none;
+        
             a{
+                width: 100%;
                 text-decoration: none;
             color: var( --text-color);
             cursor: pointer;
