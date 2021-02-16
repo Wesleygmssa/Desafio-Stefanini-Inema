@@ -60,6 +60,16 @@ const Home: React.FC = () => {
     }
   }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
 
+  const handleModalClose = useCallback(() => {
+    setNome('');
+    setNome_foto('');
+    setLocal_foto('');
+    setData_foto('');
+    setImg_base64(undefined);
+    setTermos(false);
+    setModalIsOpen(false);
+  }, []);
+
   return (
     <>
       <div id="inital" />
@@ -100,9 +110,8 @@ const Home: React.FC = () => {
               </Box>
               <Button onClick={() => { setModalIsOpen(true); }}>FAÇA SUA INSCRIÇÃO</Button>
               <Modal isOpen={modalIsOpen}>
-
                 <ModalInt>
-                  <FaRegTimesCircle size={30} onClick={() => { setModalIsOpen(false); }}>X</FaRegTimesCircle>
+                  <FaRegTimesCircle size={30} onClick={handleModalClose} />
                   <Form onSubmit={handleSubmit}>
                     <input
                       type="text"
@@ -110,7 +119,6 @@ const Home: React.FC = () => {
                       placeholder="Nome do colaborador"
                       value={nome}
                       onChange={(e) => { setNome(e.target.value); }}
-
                     />
 
                     <input
@@ -176,7 +184,9 @@ const Home: React.FC = () => {
 
             </p>
 
-            <p>Dos participante</p>
+            <p>
+              Dos participante
+            </p>
 
             <p>
               Poderão participar do Concurso Fotográfico 2017: Todos os colaboradores do Instituto do Meio Ambiente e Recursos Hídricos -
