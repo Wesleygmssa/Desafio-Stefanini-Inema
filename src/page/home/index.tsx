@@ -30,8 +30,6 @@ const Home = () => {
     const [termos, setTermos] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-
-
     const handleSubmit = useCallback(async (e) => {
         try {
             e.preventDefault();
@@ -55,8 +53,6 @@ const Home = () => {
             } else {
                 alert('Favor aceitar o termo')
             }
-
-
 
         } catch (error) {
 
