@@ -61,6 +61,7 @@ button{
     &:hover{
         background: ${shade(0.2, '#fff')}
     }
+
 }
 
 `;
@@ -138,6 +139,10 @@ export const Box = styled.div`
     position: relative;
     top: -70px;
     background: var(--nav-color);
+
+    /* @media (min-width: 700px) {
+        top: 0px;
+  } */
     
 `;
 
