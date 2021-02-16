@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { format } from 'date-fns';
+// import ToastAnimated, { showToast } from "./ui-lib/toast";
 import Modal from 'react-modal';
 import About from '../../components/About';
 import Banner from '../../components/Banner';
@@ -33,20 +34,22 @@ const Home = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
 
+
     const handleSubmit = useCallback(async (e) => {
         try {
             e.preventDefault();
 
             const newBase64 = await ConvertBase64(img_base64);
+            const [, base64String] = (newBase64 as string).split(',');
 
-            const res = (newBase64 as string).replace(`data:image/jpeg;base64,`, "");
+            console.log(base64String)
 
             const data = {
                 nome,
                 nome_foto,
                 local_foto,
                 data_foto: format(new Date(data_foto), 'yyyy-MM-dd'),
-                img_base64: res,
+                img_base64: base64String,
                 foto: nome_foto,
                 termos
             }
