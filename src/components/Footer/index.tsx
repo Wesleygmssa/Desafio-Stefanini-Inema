@@ -7,13 +7,9 @@ import img_footer from '../../assets/images/footer.png'
 const Footer: React.FC = () => {
 
     return (
-        <>
-
-            <Container_footer>
-                <img src={img_footer} alt="" />
-            </Container_footer>
-
-        </>
+        <Container_footer>
+            <img src={img_footer} alt="" />
+        </Container_footer>
     )
 }
 

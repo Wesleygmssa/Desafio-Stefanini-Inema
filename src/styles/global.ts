@@ -40,7 +40,6 @@ export default createGlobalStyle`
     }
 `;
 
-
 export const Container = styled.div`
   width:100%;;
   min-height: 1600px;

@@ -1,9 +1,7 @@
-import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { format } from 'date-fns';
-import { toast } from 'react-toastify';
 import Modal from 'react-modal';
-import styled, { keyframes } from 'styled-components';
 import About from '../../components/About';
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
@@ -21,34 +19,8 @@ import {
     Form,
     ModalInt
 } from './styles';
-//animação
-const apperFromCenter = keyframes`
-from{
-  opacity: 0;
-  transform: translateX(50px);
-}
-to{
-  opacity: 1;
-  transform: translateX(0px);
-}
-`;
 
-export const AnimationContainer = styled.div`
-position: absolute;
-top: 19%;
-width: 500px;
-min-height: 500px;
-background: var(--nav-color);
- display: flex;  
- justify-content: center;
- flex-direction: column;
- padding: 10px 20px;
- animation: ${apperFromCenter} 1s; //executando animação
- -webkit-box-shadow: -1px 6px 15px 2px rgba(0,0,0,0.75);
- -moz-box-shadow: -1px 6px 15px 2px rgba(0,0,0,0.75);
-  box-shadow: -1px 6px 15px 2px rgba(0,0,0,0.75);
-;
-`;
+
 
 const Home = () => {
 
@@ -78,18 +50,16 @@ const Home = () => {
                 foto: nome_foto,
                 termos
             }
-            await api.post("/participante", data); //Api bloqueada
+
+            await api.post("/participante", data);
+
         } catch (error) {
 
-            console.log(error)
-
+            //toast mensagem de error
 
         }
 
     }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
-
-
-
 
     return (
         <>
@@ -101,10 +71,8 @@ const Home = () => {
                 <Content >
                     <ContentInt >
                         <BoxContent>
-                            <Title >
-                                O CONCURSO
-                <div id="id_concurso" />
-                            </Title>
+                            <div id="id_concurso" />
+                            <Title >O CONCURSO </Title>
                             <p>Concurso de fotografia para todos os técnicos do Inema para exposição de fotos que retratem a temática água
                             (os desafios e as belezas encontradas em campo) pelos colaboradores.
                             Além de uma apresentação cultural com um artista de rua (poesia, musica, cordel) que aborde a temática água.
@@ -168,9 +136,7 @@ const Home = () => {
                                             id="image"
                                             onChange={(e) => {
                                                 var files = e.target.files;
-                                                console.log(files);
                                                 var filesArr = Array.prototype.slice.call(files);
-                                                console.log(filesArr)
                                                 setImg_base64(filesArr[0])
                                             }} />
 
@@ -195,8 +161,7 @@ const Home = () => {
                     <About >
 
                         <h1>SOBRE</h1>
-                        <p>
-                            Objetivos</p>
+                        <p>Objetivos</p>
 
                         <p>Promover a seleção de 100 fotografias produzidas por colaboradores do Inema em comemoração ao dia da água,
                         que será elaborado um mural de fotos denominado de “Varal das Águas”.</p>
