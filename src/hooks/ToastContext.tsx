@@ -44,7 +44,6 @@ export const ToastProvider: React.FC = ({ children }) => {
     <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
       <ToastContainer messages={messages} />
-      {' '}
       {/* componente de toast recebendo as mensagens */}
     </ToastContext.Provider>
   );
