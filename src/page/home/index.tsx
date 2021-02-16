@@ -51,6 +51,12 @@ const Home: React.FC = () => {
 
         alert('Mensagem enviada com sucesso!');
 
+        setNome('');
+        setNome_foto('');
+        setLocal_foto('');
+        setData_foto('');
+        setImg_base64(undefined);
+        setTermos(false);
         setModalIsOpen(false);
       } else {
         alert('Favor aceitar o termo');
