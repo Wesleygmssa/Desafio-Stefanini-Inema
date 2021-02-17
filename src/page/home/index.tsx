@@ -176,7 +176,7 @@ const Home: React.FC = () => {
           <div id="about" />
           <About>
 
-            <h1>SOBRE</h1>
+            <Title>SOBRE</Title>
             <p>Objetivos</p>
 
             <p>
@@ -212,7 +212,7 @@ const Home: React.FC = () => {
             <div id="regra" />
           </About>
           <About>
-            <h1>REGRAS</h1>
+            <Title>REGRAS</Title>
 
             <p>
               {' '}

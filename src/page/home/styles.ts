@@ -121,6 +121,7 @@ color: var(--nav-color);
 font-weight: 700;
 color: var( --text-color);
 font-size: 18px;
+text-align: center;
 
 
 &:nth-child(1){
