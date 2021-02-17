@@ -117,6 +117,7 @@ export const BoxContent = styled.div`
 `;
 
 export const Title = styled.h3`
+padding: 20px 0;
 color: var(--nav-color);
 font-weight: 700;
 color: var( --text-color);
