@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import Modal from 'react-modal';
 import About from '../../components/About';
@@ -10,6 +10,7 @@ import ConvertBase64 from '../../config/ConverteBase64';
 import api from '../../services/api';
 import { Container } from '../../styles/global';
 import { useToast } from '../../hooks/ToastContext';
+import Input from '../../components/Input';
 import {
   Content,
   Title,
@@ -131,38 +132,28 @@ const Home: React.FC = () => {
                 <ModalInt>
                   <FaRegTimesCircle size={30} onClick={handleModalClose} />
                   <Form onSubmit={handleSubmit}>
-                    <input
+
+                    <Input
                       type="text"
-                      name="nome"
-                      placeholder="Nome do colaborador"
-                      value={nome}
+                      placeholder="Nome do cololaborador"
                       onChange={(e) => { setNome(e.target.value); }}
                     />
 
-                    <input
+                    <Input
                       type="text"
-                      name="nome_foto"
                       placeholder="Nome da foto"
-                      value={nome_foto}
                       onChange={(e) => { setNome_foto(e.target.value); }}
                     />
 
-                    <input
+                    <Input
                       type="text"
-                      name="local_foto"
                       placeholder="Local da foto"
-                      value={local_foto}
                       onChange={(e) => { setLocal_foto(e.target.value); }}
                     />
 
-                    <input
-                      type="date"
-                      name="data_foto"
-                      placeholder="Data de registro"
-                      value={data_foto}
-                      onChange={(e) => { setData_foto(e.target.value); }}
-                    />
+                    <Input type="date" onChange={(e) => { setData_foto(e.target.value); }} />
 
+                    <br />
                     <input
                       type="file"
                       accept="image/*"
@@ -173,6 +164,7 @@ const Home: React.FC = () => {
                         setImg_base64(filesArr[0]);
                       }}
                     />
+                    <br />
 
                     <label className="terms-agreement-label">
                       <input

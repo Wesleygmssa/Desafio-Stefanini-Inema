@@ -30,16 +30,6 @@ background: var(--nav-color);
 border-radius: 5px;
 
 
-
-input{
-    padding: 18px;
-    border-radius: 10px;
-
-    & + input{
-        margin-top: 20px;
-    }
-}
-
 label{
     color: #fff;
     span{
