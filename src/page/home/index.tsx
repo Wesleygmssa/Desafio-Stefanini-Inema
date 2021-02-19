@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   const [termos, setTermos] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const { addToast } = useToast();
+  const { addToast } = useToast(); // hooks de toast
 
   const handleSubmit = useCallback(async (e) => {
     try {
@@ -51,7 +51,11 @@ const Home: React.FC = () => {
 
         await api.post('/participante', data);
 
-        alert('Mensagem enviada com sucesso!');
+        addToast({
+          type: 'success',
+          title: 'Sua mensagem foi enviada com sucesso!',
+          description: 'Agora só aguardar, Obrigado!',
+        });
 
         setNome('');
         setNome_foto('');
@@ -61,10 +65,18 @@ const Home: React.FC = () => {
         setTermos(false);
         setModalIsOpen(false);
       } else {
-        alert('Favor aceitar o termo');
+        addToast({
+          type: 'error',
+          title: 'Favor aceitar o termo',
+          description: 'Favor ler o termo para envio da mensagem.',
+        });
       }
     } catch (error) {
-      addToast();
+      addToast({
+        type: 'error',
+        title: 'Error ao enviar mensagem',
+        description: 'Ocorreu um erro no sistema',
+      });
     }
   }, [nome, nome_foto, local_foto, data_foto, img_base64, termos, addToast]);
 
