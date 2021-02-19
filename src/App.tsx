@@ -1,12 +1,12 @@
 import React from 'react';
-import AppProvider from './hooks';
 import Home from './page/home';
 import Global from './styles/global';
+import AppProvider from './hooks';
 
 const App: React.FC = () => (
   <>
+    <Global />
     <AppProvider>
-      <Global />
       <Home />
     </AppProvider>
   </>

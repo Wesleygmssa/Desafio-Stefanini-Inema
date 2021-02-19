@@ -9,6 +9,7 @@ import Nav from '../../components/nav';
 import ConvertBase64 from '../../config/ConverteBase64';
 import api from '../../services/api';
 import { Container } from '../../styles/global';
+import { useToast } from '../../hooks/ToastContext';
 import {
   Content,
   Title,
@@ -27,6 +28,8 @@ const Home: React.FC = () => {
   const [img_base64, setImg_base64] = useState(undefined);
   const [termos, setTermos] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(async (e) => {
     try {
@@ -49,6 +52,7 @@ const Home: React.FC = () => {
         await api.post('/participante', data);
 
         alert('Mensagem enviada com sucesso!');
+
         setNome('');
         setNome_foto('');
         setLocal_foto('');
@@ -60,9 +64,9 @@ const Home: React.FC = () => {
         alert('Favor aceitar o termo');
       }
     } catch (error) {
-      alert('Ocorreu um erro ao enviar a mensagem!');
+      addToast();
     }
-  }, [nome, nome_foto, local_foto, data_foto, img_base64, termos]);
+  }, [nome, nome_foto, local_foto, data_foto, img_base64, termos, addToast]);
 
   const handleModalClose = useCallback(() => {
     setNome('');
@@ -75,6 +79,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
+
     <>
       <div id="inital" />
       <Container>

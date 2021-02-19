@@ -1,6 +1,4 @@
-import { stringify } from 'querystring';
-
-// transformando base url
+// transformando base imageBase64
 const toBase64 = (files: never) => new Promise((resolve, reject) => {
   const reader = new FileReader();
   reader.readAsDataURL(files);

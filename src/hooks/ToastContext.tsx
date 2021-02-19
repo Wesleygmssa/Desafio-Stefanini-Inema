@@ -1,55 +1,29 @@
-import React, {
-  createContext, useCallback, useContext, useState,
-} from 'react';
-import { v4 as uuid } from 'uuid';
+import React, { createContext, useContext, useCallback } from 'react';
 import ToastContainer from '../components/ToastContainer';
 
 interface ToastContextData {
-  addToast(message: Omit<ToastMessage, 'id'>): void;
-  removeToast(id: string): void;
+  addToast(): void;
+  removeToast(): void;
 }
 
-const ToastContext = createContext<ToastContextData>({} as ToastContextData);
+const ToastContext = createContext<ToastContextData>({} as ToastContextData); // Variavel global
 
-export interface ToastMessage {
-  id: string;
-  type?: 'success' | 'error' | 'info';
-  title: string;
-  description?: string;
-}
-
-export const ToastProvider: React.FC = ({ children }) => {
-  const [messages, setMessages] = useState<ToastMessage[]>([]); // um array de mensagem
-
-  const addToast = useCallback(({ type, title, description }: Omit<ToastMessage, 'id'>) => {
-    const id = uuid();
-
-    const toast = {
-      id,
-      type,
-      title,
-      description,
-
-    };
-
-    setMessages((oldMessages) => [...oldMessages, toast]);
-    // setMessages([...messages, toast]);
-  }, [messages]);
-
-  const removeToast = useCallback((id) => {
-    setMessages((stateMessage) => stateMessage.filter((message) => message.id !== id));
+const ToastProvider: React.FC = ({ children }) => {
+  const addToast = useCallback(() => {
+    console.log('addToast');
   }, []);
 
+  const removeToast = useCallback(() => {
+    console.log('RemoveToast');
+  }, []);
   return (
     <ToastContext.Provider value={{ addToast, removeToast }}>
+      <ToastContainer />
       {children}
-      <ToastContainer messages={messages} />
-      {/* componente de toast recebendo as mensagens */}
     </ToastContext.Provider>
   );
 };
-
-export function useToast(): ToastContextData {
+function useToast(): ToastContextData {
   const context = useContext(ToastContext);
 
   if (!context) {
@@ -58,3 +32,5 @@ export function useToast(): ToastContextData {
 
   return context;
 }
+
+export { ToastProvider, useToast };
