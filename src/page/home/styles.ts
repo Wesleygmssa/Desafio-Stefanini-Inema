@@ -54,6 +54,13 @@ button{
 
 `;
 
+export const Error = styled.div`
+  margin: 0 auto;
+  color: #c53030;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
 export const Content = styled.div`
 display: flex;
 flex-direction: column;

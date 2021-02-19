@@ -19,6 +19,7 @@ import {
   Box,
   Form,
   ModalInt,
+  Error,
 } from './styles';
 
 const Home: React.FC = () => {
@@ -29,50 +30,81 @@ const Home: React.FC = () => {
   const [img_base64, setImg_base64] = useState(undefined);
   const [termos, setTermos] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [inputError, setInputError] = useState('');
 
   const { addToast } = useToast(); // hooks de toast
 
   const handleSubmit = useCallback(async (e) => {
+    if (!nome) {
+      addToast({
+        type: 'error',
+        title: 'Campo nome vazio ',
+        description: 'Favor informa o nome',
+      });
+    }
+    if (!nome_foto) {
+      addToast({
+        type: 'error',
+        title: 'Campo nome da foto esta vazio',
+        description: 'Favor informa o nome da foto',
+      });
+    }
+    if (!local_foto) {
+      addToast({
+        type: 'error',
+        title: 'Campo local da foto esta vazio',
+        description: 'Favor informa o local da foto',
+      });
+    }
+
+    if (!data_foto) {
+      addToast({
+        type: 'error',
+        title: 'Campo de data vazio',
+        description: 'Favor informa inserir uma data futura.',
+      });
+    }
+
+    if (!termos) {
+      addToast({
+        type: 'error',
+        title: 'Favor aceitar o termo',
+        description: 'Favor ler o termo para envio da mensagem.',
+      });
+    }
     try {
       e.preventDefault();
 
-      if (termos) {
-        const newBase64 = await ConvertBase64(img_base64 as never);
-        const [, base64String] = (newBase64 as string).split(',');
+      const newBase64 = await ConvertBase64(img_base64 as never);
+      const [, base64String] = (newBase64 as string).split(',');
 
-        const data = {
-          nome,
-          nome_foto,
-          local_foto,
-          data_foto,
-          img_base64: base64String,
-          foto: nome_foto,
-          termos,
-        };
+      const data = {
+        nome,
+        nome_foto,
+        local_foto,
+        data_foto,
+        img_base64: base64String,
+        foto: nome_foto,
+        termos,
+      };
 
-        await api.post('/participante', data);
+      await api.post('/participante', data);
 
-        addToast({
-          type: 'success',
-          title: 'Sua mensagem foi enviada com sucesso!',
-          description: 'Agora só aguardar, Obrigado!',
-        });
+      addToast({
+        type: 'success',
+        title: 'Sua mensagem foi enviada com sucesso!',
+        description: 'Agora só aguardar, Obrigado!',
+      });
 
-        setNome('');
-        setNome_foto('');
-        setLocal_foto('');
-        setData_foto('');
-        setImg_base64(undefined);
-        setTermos(false);
-        setModalIsOpen(false);
-      } else {
-        addToast({
-          type: 'error',
-          title: 'Favor aceitar o termo',
-          description: 'Favor ler o termo para envio da mensagem.',
-        });
-      }
+      setNome('');
+      setNome_foto('');
+      setLocal_foto('');
+      setData_foto('');
+      setImg_base64(undefined);
+      setTermos(false);
+      setModalIsOpen(false);
     } catch (error) {
+      // setInputError('Digite seu nome');
       addToast({
         type: 'error',
         title: 'Error ao enviar mensagem',
@@ -177,6 +209,7 @@ const Home: React.FC = () => {
                     </label>
 
                     <Button type="submit">Enviar</Button>
+                    {inputError && <Error>{inputError}</Error>}
                   </Form>
                 </ModalInt>
               </Modal>

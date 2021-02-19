@@ -52,6 +52,10 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 
+  strong{
+    font-weight: bold;
+  }
+
   button{
     position: absolute;
     right: 16px;

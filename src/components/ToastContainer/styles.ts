@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: fixed;
