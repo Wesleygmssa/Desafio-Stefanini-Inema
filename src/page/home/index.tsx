@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import Modal from 'react-modal';
 import About from '../../components/About';
@@ -35,45 +35,54 @@ const Home: React.FC = () => {
   const { addToast } = useToast(); // hooks de toast
 
   const handleSubmit = useCallback(async (e) => {
-    if (!nome) {
-      addToast({
-        type: 'error',
-        title: 'Campo nome vazio ',
-        description: 'Favor informa o nome',
-      });
-    }
-    if (!nome_foto) {
-      addToast({
-        type: 'error',
-        title: 'Campo nome da foto esta vazio',
-        description: 'Favor informa o nome da foto',
-      });
-    }
-    if (!local_foto) {
-      addToast({
-        type: 'error',
-        title: 'Campo local da foto esta vazio',
-        description: 'Favor informa o local da foto',
-      });
-    }
-
-    if (!data_foto) {
-      addToast({
-        type: 'error',
-        title: 'Campo de data vazio',
-        description: 'Favor informa inserir uma data futura.',
-      });
-    }
-
-    if (!termos) {
-      addToast({
-        type: 'error',
-        title: 'Favor aceitar o termo',
-        description: 'Favor ler o termo para envio da mensagem.',
-      });
-    }
     try {
       e.preventDefault();
+      // validação dos campos
+      if (!nome) {
+        setInputError('Preencha os campos corretamente');
+        return;
+      }
+
+      if (!nome_foto) {
+        setInputError('Preencha os campos corretamente');
+        return;
+      }
+      if (!local_foto) {
+        setInputError('Preencha os campos corretamente');
+        return;
+      }
+
+      if (!data_foto) {
+        addToast({
+          type: 'error',
+          title: 'Campo data está vazio!',
+          description: 'Favor informa inserir uma data futura.',
+        });
+
+        setInputError('Preencha os campos corretamente');
+        return;
+      }
+
+      if (!img_base64) {
+        addToast({
+          type: 'error',
+          title: 'Selecione uma foto!',
+          description: 'Obrigatório selecionar uma imagem!',
+        });
+        return;
+      }
+
+      if (!termos) {
+        addToast({
+          type: 'error',
+          title: 'Favor aceitar o termo',
+          description: 'Favor ler o termo para envio da mensagem.',
+        });
+
+        setInputError('Preencha os campos corretamente');
+
+        return;
+      }
 
       const newBase64 = await ConvertBase64(img_base64 as never);
       const [, base64String] = (newBase64 as string).split(',');
@@ -102,6 +111,7 @@ const Home: React.FC = () => {
       setData_foto('');
       setImg_base64(undefined);
       setTermos(false);
+      setInputError('');
       setModalIsOpen(false);
     } catch (error) {
       // setInputError('Digite seu nome');
@@ -111,7 +121,14 @@ const Home: React.FC = () => {
         description: 'Ocorreu um erro no sistema',
       });
     }
-  }, [nome, nome_foto, local_foto, data_foto, img_base64, termos, addToast]);
+  }, [
+    nome,
+    nome_foto,
+    local_foto,
+    data_foto,
+    img_base64,
+    termos,
+    addToast]);
 
   const handleModalClose = useCallback(() => {
     setNome('');
@@ -120,6 +137,7 @@ const Home: React.FC = () => {
     setData_foto('');
     setImg_base64(undefined);
     setTermos(false);
+    setInputError('');
     setModalIsOpen(false);
   }, []);
 
@@ -159,31 +177,52 @@ const Home: React.FC = () => {
                   ás 17:30h.
                 </span>
               </Box>
-              <Button onClick={() => { setModalIsOpen(true); }}>FAÇA SUA INSCRIÇÃO</Button>
+              <Button onClick={() => {
+                setModalIsOpen(true);
+                addToast({
+                  type: 'info',
+                  title: 'Favor preencher todos os campos!',
+                });
+              }}
+              >
+                FAÇA SUA INSCRIÇÃO
+
+              </Button>
               <Modal isOpen={modalIsOpen}>
                 <ModalInt>
                   <FaRegTimesCircle size={30} onClick={handleModalClose} />
                   <Form onSubmit={handleSubmit}>
 
                     <Input
+                      inputError={inputError}
                       type="text"
                       placeholder="Nome do cololaborador"
+                      value={nome}
                       onChange={(e) => { setNome(e.target.value); }}
                     />
 
                     <Input
+                      inputError={inputError}
                       type="text"
                       placeholder="Nome da foto"
+                      value={nome_foto}
                       onChange={(e) => { setNome_foto(e.target.value); }}
                     />
 
                     <Input
+                      inputError={inputError}
                       type="text"
                       placeholder="Local da foto"
+                      value={local_foto}
                       onChange={(e) => { setLocal_foto(e.target.value); }}
                     />
 
-                    <Input type="date" onChange={(e) => { setData_foto(e.target.value); }} />
+                    <Input
+                      inputError={inputError}
+                      type="date"
+                      value={data_foto}
+                      onChange={(e) => { setData_foto(e.target.value); }}
+                    />
 
                     <br />
                     <input
@@ -203,7 +242,7 @@ const Home: React.FC = () => {
                         type="checkbox"
                         name="terms-agreement-checkbox"
                         onChange={(e) => { setTermos(e.target.checked); }}
-                        defaultChecked={false} // inicia como não aceito
+                        defaultChecked={false}
                       />
                       <span>Aceito os termos</span>
                     </label>

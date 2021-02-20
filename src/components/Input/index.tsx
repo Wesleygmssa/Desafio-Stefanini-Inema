@@ -3,9 +3,11 @@ import React, {
 } from 'react';
 import { Container } from './styles';
 
-type InputProps = InputHTMLAttributes<HTMLInputElement>
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  inputError?: string;
+}
 
-const Input: React.FC<InputProps> = ({ ...rest }) => {
+const Input: React.FC<InputProps> = ({ inputError, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, SetIsFilled] = useState(false);
@@ -27,7 +29,7 @@ const Input: React.FC<InputProps> = ({ ...rest }) => {
   }, []);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused}>
+    <Container inputError={!!inputError} isFilled={isFilled} isFocused={isFocused}>
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlue}
