@@ -12,13 +12,16 @@ const Input: React.FC<InputProps> = ({ inputError, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, SetIsFilled] = useState(false);
 
+  // quando tiver focus
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
   }, []);
 
+  // quando perder focus
   const handleInputBlue = useCallback(() => {
     setIsFocused(false);
 
+    // se tiver algum valor no input
     if (inputRef.current?.value) {
       SetIsFilled(true);
     } else {

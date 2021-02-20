@@ -9,7 +9,7 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
          background: #fff;
         border-radius: 10px;
-        border: 4px solid #fff;
+        border: 3px solid #fff;
         color: #666360;
         padding: 16px;
         width: 100%;
@@ -46,4 +46,6 @@ input{
 }
 `;
 
-export const Error = styled.div``;
+export const Error = styled.div`
+  position: absolute;
+`;

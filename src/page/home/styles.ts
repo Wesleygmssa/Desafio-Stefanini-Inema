@@ -57,8 +57,15 @@ button{
 `;
 
 export const Error = styled.div`
+position: absolute;
+bottom: 70px;
+left: 37%;
+border: 1px solid #c53030;
+border-radius: 5px;
+background: #c53030;
+padding: 10px;
   margin: 0 auto;
-  color: #c53030;
+  color: #fff;
   font-size: 20px;
   font-weight: bold;
 `;
